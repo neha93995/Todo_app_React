@@ -1,0 +1,91 @@
+/* ------------------------- elements----------------- */
+select{
+    outline: none;
+    border: none;
+    font-weight: 700;
+    background-color: transparent;
+    border-bottom: 3px solid #610c7b;
+    text-align: center;
+}
+/* ?????????????????????????????????????????????/// */
+option:hover{
+    background-color: #610c7b;
+}
+
+input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid #fff;
+    margin: 10px;
+    color: #fff;
+}
+input::placeholder{
+    color: #807f7f;
+    font-size: 12px;
+}
+
+
+button{
+    padding: 2px 10px;
+    border-radius: 7px;
+    border: none;
+    margin-left: 4px;
+}
+
+/* ------------------------- todo --------------------------- */
+
+.todo{
+    margin: 20px;
+}
+
+.todo_container{
+    margin-top: 40px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    justify-items: center;
+    justify-content: space-between;
+    row-gap: 20px;
+
+}
+
+.todo_item{
+    width: 300px;
+    height: 140px;
+    border-radius: 20px;
+    background-color: #610c7b;
+    padding: 20px;
+    color: #fff;
+    box-shadow:5px 5px 5px #341b3c;
+    position: relative;
+}
+
+.todo_item_container{
+    margin: 10px;
+    padding-right: 10px;
+    height: 55px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.todo_item_update{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* ---------------------icons styling------------------------- */
+
+.cross-icon{
+    position: absolute;
+    left: 3%;
+    top: 5%;
+    font-size: 11px;
+    
+}
+
+
