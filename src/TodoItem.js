@@ -1,36 +1,30 @@
 import { useState } from "react";
 import { ImCross } from 'react-icons/im'
 
-function TodoItem({ onCloseHandler }) {
-    const [todoList, SetTodoList] = useState([]);
+function TodoItem({todosInfo}) {
+ 
+    const {indexOfTodo, todos, setTodos, deleteTodo} = todosInfo;
+
     const [todoTitle, SetTodoTitle] = useState("");
     const [isEdit, SetIsEdit] = useState(false);
     const [editItemIndex, setEditItemIndex] = useState(-1);
 
     // ----------------------add item function -------------------
-
-
+    
     const addTodoItem = () => {
-        // console.log('------------ ',todos[index].task)
-
         if (isEdit) {
-            let arr = todoList
-            arr[editItemIndex] = todoTitle;
-            SetTodoList(arr)
+            let arr= todos;
+            arr[indexOfTodo].task[editItemIndex] = todoTitle;
+            setTodos(arr);
         }
+        
         else {
-
-            SetTodoList([...todoList, todoTitle]);
+            
+            let arr= todos;
+            arr[indexOfTodo].task.push(todoTitle);
+            setTodos(arr);
         }
-
-
-
-        // let arr= todos;
-        // arr[index].task = todoList;
-        // console.log(arr);
-        // setTodos(arr);
-        // console.log(todos)
-
+        
         SetTodoTitle("");
         SetIsEdit(false);
     }
@@ -40,7 +34,7 @@ function TodoItem({ onCloseHandler }) {
 
     const editTodoItem = (index) => {
         SetIsEdit(true);
-        todoList.map((item, i) => {
+        todos[indexOfTodo].task.map((item, i) => {
             if (i === index) {
                 SetTodoTitle(item);
             }
@@ -50,21 +44,22 @@ function TodoItem({ onCloseHandler }) {
 
     // ----------------------------delete todo item----------------------
 
+    // console.log(todos)
 
     const deleteTodoItem = (index) => {
-        console.log(index, "index")
-        let arr = todoList.filter((item, i) => {
+        let arr = [...todos];
+        console.log('-----',typeof(arr)) //------------------------???????????????
+        arr[indexOfTodo].task = arr[indexOfTodo].task.filter((item, i) => {
             return i !== index
         })
-
-        SetTodoList(arr);
+        setTodos(arr);
     }
 
 
     return (
         <>
             <div className="todo_item">
-                <div className="cross-icon" onClick={onCloseHandler} ><ImCross /></div>
+                <div className="cross-icon" onClick={()=>deleteTodo(indexOfTodo)} ><ImCross /></div>
                 {
                     isEdit ?
 
@@ -83,11 +78,11 @@ function TodoItem({ onCloseHandler }) {
 
                 }
                 {
-                    todoList.length > 0 ?
+                    // todos[indexOfTodo].task.length > 0 ?
 
                         <div className="todo_item_container">
                             {
-                                todoList.map((item, index) => {
+                                todos[indexOfTodo].task.map((item, index) => {
                                     return (
 
                                         <div key={index} className="todo_item_update">
@@ -101,8 +96,9 @@ function TodoItem({ onCloseHandler }) {
                                 })
                             }
 
-                        </div> :
-                        ""
+                        </div> 
+                        // :
+                        // ""
                 }
             </div>
         </>

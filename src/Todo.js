@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 
 function Todo() {
 
-    const [options, setOptions] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const [todos, setTodos] = useState([]);
 
 
@@ -20,16 +20,14 @@ function Todo() {
 
         setTodos(newCard)
     }
-console.log(todos,"test")
     
 
-    const deleteTodoItem = (idToDelete) => {
-        debugger
-      
+    const deleteTodo = (idToDelete) => {
         const updatedTodos = todos.filter((item,index) => index !== idToDelete);
         setTodos(updatedTodos);
     };
-    console.log("tddddddest", todos)
+
+
     return (
 
         <div className="todo">
@@ -38,9 +36,8 @@ console.log(todos,"test")
                 <select id="select" onChange={createTodo}>
                     <option > Select No. of Todo </option>
                     {
-                        options.map((value) => {
-                            return <option value={value}>{value}</option>
-                        })
+                        options.map((value,index) => {return <option key={index} value={value}>{value}</option>
+                    })
                     }
                 </select>
             </div>
@@ -52,7 +49,15 @@ console.log(todos,"test")
                         return (
                             <TodoItem
                                 key={index}
-                                onCloseHandler={()=>deleteTodoItem(index)}
+                                // onCloseHandler={()=>deleteTodoItem(index)}
+                                todosInfo = {
+                                    {
+                                    indexOfTodo:index,
+                                    todos:todos,
+                                    setTodos:setTodos,
+                                    deleteTodo:deleteTodo
+                                }
+                            }
 
                             />
 
