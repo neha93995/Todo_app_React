@@ -88,4 +88,10 @@ button{
     
 }
 
+@media screen and (max-width:540px) {
+    .todo_container{
+        grid-template-columns: 1fr;
+    }
+    
+}
 
